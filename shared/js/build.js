@@ -7,7 +7,7 @@ const sharedDir = path.join(siteRoot, 'shared');
 const publicDir = path.join(siteRoot, 'public');
 
 const layoutPath = path.join(sharedDir, 'layout.html');
-const analyticsPath = path.join(srcDir, 'includes', 'analytics.html');
+const configPath = path.join(siteRoot, 'config.json');
 
 function buildSite() {
     try {
@@ -17,10 +17,19 @@ function buildSite() {
         }
 
         const layoutTemplate = fs.readFileSync(layoutPath, 'utf8');
-        let analyticsBlock = '';
-        if (fs.existsSync(analyticsPath)) {
-            analyticsBlock = fs.readFileSync(analyticsPath, 'utf8');
+        
+        // 1. Load the site config globally
+        let siteConfig = { siteName: "Site", siteTitle: "Site", siteUrl: "", gtag: "" };
+        if (fs.existsSync(configPath)) {
+            siteConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        } else {
+            console.warn(`Warning: config.json missing at ${configPath}. Using defaults.`);
         }
+
+        // 2. Generate Build Date variables globally
+        const now = new Date();
+        const buildDateIso = now.toISOString();
+        const buildDateReadable = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
         const pagesDir = path.join(srcDir, 'pages');
         
@@ -39,6 +48,7 @@ function buildSite() {
                     
                     let pageContent = fs.readFileSync(srcPath, 'utf8');
                     let pageTitle = "Untitled";
+                    let pageDesc = "";
 
                     // Regex to find the front matter block between --- lines
                     const frontMatterRegex = /^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/;
@@ -47,21 +57,51 @@ function buildSite() {
                     if (match) {
                         const frontMatter = match[1];
                         
-                        // Extract the title variable from within the front matter
+                        // Extract the title
                         const titleMatch = frontMatter.match(/title:\s*(.*)/i);
-                        if (titleMatch) {
-                            pageTitle = titleMatch[1].trim();
-                        }
+                        if (titleMatch) pageTitle = titleMatch[1].trim();
+                        
+                        // Extract the description
+                        const descMatch = frontMatter.match(/description:\s*(.*)/i);
+                        if (descMatch) pageDesc = descMatch[1].trim();
                         
                         // Remove the entire front matter block from the content
                         pageContent = pageContent.replace(match[0], '').trim();
                     }
 
-                    // Build the final HTML using the shared layout
+                    // 3. Generate Breadcrumbs dynamically based on file path
+                    const relativePath = path.relative(publicDir, pubPath).replace(/\\/g, '/');
+                    const pathParts = relativePath.split('/').filter(p => p !== 'index.html' && p !== '');
+
+                    let breadcrumb = `<a href="/">${siteConfig.siteName}</a>`;
+                    let currentPath = '';
+
+                    pathParts.forEach((part, index) => {
+                        currentPath += `/${part}`;
+                        const displayPart = part.charAt(0).toUpperCase() + part.slice(1);
+                        
+                        if (index === pathParts.length - 1) {
+                            breadcrumb += ` / <span>${displayPart}</span>`;
+                        } else {
+                            breadcrumb += ` / <a href="${currentPath}/">${displayPart}</a>`;
+                        }
+                    });
+
+                    // 4. Default JSON-LD to empty unless added later
+                    let jsonLdBlock = '';
+
+                    // 5. Build the final HTML replacing all placeholders
                     let finalHtml = layoutTemplate
-                        .split('{{TITLE}}').join(pageTitle)
-                        .split('{{ANALYTICS}}').join(analyticsBlock)
-                        .split('{{CONTENT}}').join(pageContent);
+                        .replaceAll('{{SITE_NAME}}', siteConfig.siteName)
+                        .replaceAll('{{SITE_TITLE}}', siteConfig.siteTitle)
+                        .replaceAll('{{GTAG}}', siteConfig.gtag)
+                        .replaceAll('{{BREADCRUMB}}', breadcrumb)
+                        .replaceAll('{{BUILD_DATE_ISO}}', buildDateIso)
+                        .replaceAll('{{BUILD_DATE_READABLE}}', buildDateReadable)
+                        .replaceAll('{{PAGE_TITLE}}', pageTitle)
+                        .replaceAll('{{PAGE_DESC}}', pageDesc)
+                        .replaceAll('{{JSON_LD}}', jsonLdBlock)
+                        .replaceAll('{{CONTENT}}', pageContent);
 
                     fs.writeFileSync(pubPath, finalHtml);
                     console.log(`Compiled: ${path.relative(publicDir, pubPath)}`);
