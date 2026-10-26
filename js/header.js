@@ -6,6 +6,6 @@ const headerHTML = `
 `;
 document.body.insertAdjacentHTML('afterbegin', headerHTML);
 
-await import './theme.js';
-await import './breadcrumb.js';
-await import './auth.js';
+await import('./theme.js');
+await import('./breadcrumb.js');
+await import('./auth.js');
