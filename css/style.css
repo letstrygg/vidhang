@@ -27,3 +27,8 @@ summary {
 summary::-webkit-details-marker {
   display: none;
 }
+
+details div {
+  display: flex;
+  flex-direction: column;
+}
