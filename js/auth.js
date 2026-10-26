@@ -11,18 +11,18 @@ function renderAuth(user) {
       <details>
         <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
         <div>
-          <a href="#" id="signout-link">Sign out</a>
+          <a href="#" id="signout">Sign out</a>
         </div>
       </details>
     `
-    document.getElementById('signout-link').onclick = (e) => {
+    document.getElementById('signout').onclick = (e) => {
       e.preventDefault()
       supabase.auth.signOut()
     }
   } else {
     authContainer.innerHTML = `
       <details>
-        <summary><button>Sign in</button></summary>
+        <summary class="button">Sign in</summary>
         <div>
           <a href="#" data-provider="google">Google</a>
           <a href="#" data-provider="twitch">Twitch</a>
