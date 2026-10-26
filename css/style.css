@@ -28,6 +28,13 @@ header {
   border-radius: 50%;
 }
 
+.icon-sm {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .button {
   height: 30px;
   box-sizing: border-box;
