@@ -11,6 +11,7 @@ function renderAuth(user) {
       <details>
         <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
         <div>
+          <a href="#" id="theme">Theme</a>
           <a href="#" id="signout">Sign out</a>
         </div>
       </details>
@@ -24,6 +25,7 @@ function renderAuth(user) {
       <details>
         <summary class="button">Sign in</summary>
         <div>
+          <a href="#" id="theme">Theme</a>
           <a href="#" data-provider="google">Google</a>
           <a href="#" data-provider="twitch">Twitch</a>
         </div>
@@ -38,6 +40,15 @@ function renderAuth(user) {
         })
       }
     })
+  }
+
+  // Wire up the theme toggle for whichever dropdown state is active
+  const themeLink = document.getElementById('theme')
+  if (themeLink) {
+    themeLink.onclick = (e) => {
+      e.preventDefault()
+      document.body.classList.toggle('light-theme')
+    }
   }
 }
 
