@@ -8,3 +8,12 @@ header {
   height: 30px;
   object-fit: cover;
 }
+
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
