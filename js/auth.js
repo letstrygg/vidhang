@@ -8,29 +8,35 @@ function renderAuth(user) {
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
     authContainer.innerHTML = `
-      <details class="dropdown">
+      <details>
         <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
-        <div class="dropdown-menu">
-          <button id="signout-btn">Sign out</button>
+        <div>
+          <a href="#" id="signout-link">Sign out</a>
         </div>
       </details>
     `
-    document.getElementById('signout-btn').onclick = () => supabase.auth.signOut()
+    document.getElementById('signout-link').onclick = (e) => {
+      e.preventDefault()
+      supabase.auth.signOut()
+    }
   } else {
     authContainer.innerHTML = `
-      <details class="dropdown">
-        <summary>Sign in</summary>
-        <div class="dropdown-menu">
-          <button data-provider="google">Google</button>
-          <button data-provider="twitch">Twitch</button>
+      <details>
+        <summary><button>Sign in</button></summary>
+        <div>
+          <a href="#" data-provider="google">Google</a>
+          <a href="#" data-provider="twitch">Twitch</a>
         </div>
       </details>
     `
-    authContainer.querySelectorAll('[data-provider]').forEach(btn => {
-      btn.onclick = () => supabase.auth.signInWithOAuth({
-        provider: btn.dataset.provider,
-        options: { redirectTo: window.location.origin + window.location.pathname }
-      })
+    authContainer.querySelectorAll('[data-provider]').forEach(link => {
+      link.onclick = (e) => {
+        e.preventDefault()
+        supabase.auth.signInWithOAuth({
+          provider: link.dataset.provider,
+          options: { redirectTo: window.location.origin + window.location.pathname }
+        })
+      }
     })
   }
 }
