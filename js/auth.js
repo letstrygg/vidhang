@@ -8,15 +8,23 @@ function renderAuth(user) {
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
     authContainer.innerHTML = `
-      <img src="${avatar}" alt="Profile" class="icon" />
-      <button id="signout-btn">Sign out</button>
+      <details class="dropdown">
+        <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
+        <div class="dropdown-menu">
+          <button id="signout-btn">Sign out</button>
+        </div>
+      </details>
     `
     document.getElementById('signout-btn').onclick = () => supabase.auth.signOut()
   } else {
     authContainer.innerHTML = `
-      <span>Sign in:</span>
-      <button data-provider="google">Google</button>
-      <button data-provider="twitch">Twitch</button>
+      <details class="dropdown">
+        <summary>Sign in</summary>
+        <div class="dropdown-menu">
+          <button data-provider="google">Google</button>
+          <button data-provider="twitch">Twitch</button>
+        </div>
+      </details>
     `
     authContainer.querySelectorAll('[data-provider]').forEach(btn => {
       btn.onclick = () => supabase.auth.signInWithOAuth({
