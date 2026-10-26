@@ -18,8 +18,8 @@ document.addEventListener('click', (e) => {
   localStorage.setItem('theme', isLight ? 'light' : 'dark')
   
   themeLink.innerHTML = isLight 
-    ? `<span class="material-symbols-outlined">dark_mode</span> Theme` 
-    : `<span class="material-symbols-outlined">light_mode</span> Theme`
+    ? `<span class="material-symbols-outlined">light_mode</span> Theme` 
+    : `<span class="material-symbols-outlined">dark_mode</span> Theme`
 })
 
 const authContainer = document.querySelector('header > #auth')
@@ -29,8 +29,8 @@ function renderAuth(user) {
 
   const isLight = document.body.classList.contains('light-theme')
   const themeHTML = isLight 
-    ? `<span class="material-symbols-outlined">dark_mode</span> Theme` 
-    : `<span class="material-symbols-outlined">light_mode</span> Theme`
+    ? `<span class="material-symbols-outlined">light_mode</span> Theme` 
+    : `<span class="material-symbols-outlined">dark_mode</span> Theme`
 
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
