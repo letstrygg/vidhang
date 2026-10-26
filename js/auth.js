@@ -7,8 +7,8 @@ if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
   document.body.classList.add('light-theme')
 }
 
-const sunIconHTML = `<img src="/images/icons/light_mode_20dp_E66B00_FILL1_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
-const moonIconHTML = `<img src="/images/icons/dark_mode_20dp_C390FF_FILL1_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
+const sunIconHTML = `<img src="/images/icons/light_mode_20dp_1a1a1a_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
+const moonIconHTML = `<img src="/images/icons/dark_mode_20dp_E0E0E0_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
 
 document.addEventListener('click', (e) => {
   const themeLink = e.target.closest('#theme')
