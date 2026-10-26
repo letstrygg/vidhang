@@ -7,6 +7,9 @@ if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
   document.body.classList.add('light-theme')
 }
 
+const sunIconHTML = `<img src="/images/icons/wb_sunny_125dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.svg" alt="" class="icon" /> Theme`
+const moonIconHTML = `<img src="/images/icons/dark_mode_125dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.svg" alt="" class="icon" /> Theme`
+
 document.addEventListener('click', (e) => {
   const themeLink = e.target.closest('#theme')
   if (!themeLink) return
@@ -17,9 +20,7 @@ document.addEventListener('click', (e) => {
   const isLight = document.body.classList.contains('light-theme')
   localStorage.setItem('theme', isLight ? 'light' : 'dark')
   
-  themeLink.innerHTML = isLight 
-    ? `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Theme` 
-    : `<span class="material-symbols-outlined">dark_mode</span> Theme`
+  themeLink.innerHTML = isLight ? moonIconHTML : sunIconHTML
 })
 
 const authContainer = document.querySelector('header > #auth')
@@ -28,9 +29,7 @@ function renderAuth(user) {
   if (!authContainer) return
 
   const isLight = document.body.classList.contains('light-theme')
-  const themeHTML = isLight 
-    ? `<span class="material-symbols-outlined">light_mode</span> Theme` 
-    : `<span class="material-symbols-outlined">dark_mode</span> Theme`
+  const themeHTML = isLight ? moonIconHTML : sunIconHTML
 
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
