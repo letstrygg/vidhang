@@ -7,8 +7,8 @@ if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
   document.body.classList.add('light-theme')
 }
 
-const sunIconHTML = `<img src="/images/icons/light_mode_20dp_E0E0E0_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
-const moonIconHTML = `<img src="/images/icons/dark_mode_20dp_1A1A1A_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
+const sun = `<img src="/images/icons/light_mode_20dp_E0E0E0_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
+const moon = `<img src="/images/icons/dark_mode_20dp_1A1A1A_FILL0_wght400_GRAD0_opsz20.svg" alt="" class="icon-sm" /> Theme`
 
 document.addEventListener('click', (e) => {
   const themeLink = e.target.closest('#theme')
@@ -20,7 +20,7 @@ document.addEventListener('click', (e) => {
   const isLight = document.body.classList.contains('light-theme')
   localStorage.setItem('theme', isLight ? 'light' : 'dark')
   
-  themeLink.innerHTML = isLight ? moonIconHTML : sunIconHTML
+  themeLink.innerHTML = isLight ? sun : moon
 })
 
 const authContainer = document.querySelector('header > #auth')
@@ -29,7 +29,7 @@ function renderAuth(user) {
   if (!authContainer) return
 
   const isLight = document.body.classList.contains('light-theme')
-  const themeHTML = isLight ? moonIconHTML : sunIconHTML
+  const themeHTML = isLight ? sun : moon
 
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
