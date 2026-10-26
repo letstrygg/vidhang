@@ -8,7 +8,7 @@ function renderAuth(user) {
   if (user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
     authContainer.innerHTML = `
-      <img src="${avatar}" alt="Profile" />
+      <img src="${avatar}" alt="Profile" class="icon" />
       <button id="signout-btn">Sign out</button>
     `
     document.getElementById('signout-btn').onclick = () => supabase.auth.signOut()
