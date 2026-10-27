@@ -44,6 +44,11 @@ header input {
   width: 200%;
 }
 
+header input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
 #auth {
   justify-self: end;
 }
