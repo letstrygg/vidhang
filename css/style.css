@@ -41,6 +41,7 @@ header input {
   border: 1px solid var(--border);
   padding: 0px 16px;
   justify-self: center;
+  width: 200%;
 }
 
 #auth {
