@@ -30,7 +30,7 @@ function renderAuth(user) {
     authContainer.innerHTML = `
       <details>
         <summary class="button">Sign in</summary>
-        <div>
+        <div class="top right">
           <a href="#" id="theme">${themeHTML}</a>
           <a href="#" data-provider="google" data-auth-action="login" data-label="Google">${googleHTML}</a>
           <a href="#" data-provider="twitch" data-auth-action="login" data-label="Twitch">${twitchHTML}</a>

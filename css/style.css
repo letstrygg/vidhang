@@ -57,9 +57,22 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+details {
+  position: relative;
+}
+
 details div {
+  position: absolute;
   display: flex;
   flex-direction: column;
+}
+
+.top {
+  top: 100%;
+}
+
+.right {
+  right: 0;
 }
 
 a {
