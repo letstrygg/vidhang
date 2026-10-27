@@ -10,3 +10,9 @@ document.body.insertAdjacentHTML('afterbegin', headerHTML);
 await import('./theme.js');
 await import('./breadcrumb.js');
 await import('./auth.js');
+
+export function setPageTitle(title) {
+  document.title = title ? `${title} - vidhang` : 'vidhang';
+}
+
+setPageTitle();
