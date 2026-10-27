@@ -4,6 +4,7 @@
   --text: #e0e0e0;
   --surface: #1e1e1e;
   --blue: #75caff;
+  --border: #1c1c1c;
 }
 
 html.light-theme {
@@ -12,6 +13,7 @@ html.light-theme {
   --text: #1a1a1a;
   --surface: #f5f5f5;
   --blue: #4db5ff;
+  --border: #e3e3e3;
 }
 
 body {
@@ -32,6 +34,7 @@ header input {
   height: 32px;
   border-radius: 16px;
   background-color: var(--deep);
+  border: 1px solid var(--border);
 }
 
 .icon {
