@@ -75,6 +75,7 @@ details div {
 
 .right {
   right: 0;
+  left: auto;
 }
 
 a {
