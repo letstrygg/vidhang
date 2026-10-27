@@ -1,5 +1,6 @@
 :root {
   --bg: #121212;
+  --deep: #0d0d0d;
   --text: #e0e0e0;
   --surface: #1e1e1e;
   --blue: #75caff;
@@ -7,6 +8,7 @@
 
 html.light-theme {
   --bg: #ffffff;
+  --deep: #F2F2F2;
   --text: #1a1a1a;
   --surface: #f5f5f5;
   --blue: #4db5ff;
@@ -24,6 +26,12 @@ header {
   justify-content: space-between;
   align-items: center;
   min-height: 32px;
+}
+
+header input {
+  height: 32px;
+  border-radius: 16px;
+  background-color: var(--deep);
 }
 
 .icon {
