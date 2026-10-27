@@ -90,4 +90,9 @@ details div a, details div span {
 a {
   color: inherit;
   text-decoration: none;
+  opacity: 80%;
+}
+
+a:hover {
+  opacity: 100%;
 }
