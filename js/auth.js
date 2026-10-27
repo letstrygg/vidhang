@@ -17,8 +17,8 @@ function renderAuth(user) {
       <details>
         <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
         <div class="top right">
-          <span id="theme" class="link">${themeHTML}</span>
-          <span id="signout" class="link">${logoutHTML}</span>
+          <span id="theme">${themeHTML}</span>
+          <span id="signout">${logoutHTML}</span>
         </div>
       </details>
     `
@@ -31,7 +31,7 @@ function renderAuth(user) {
       <details>
         <summary class="button">Sign in</summary>
         <div class="top right">
-          <span id="theme" class="link">${themeHTML}</span>
+          <span id="theme">${themeHTML}</span>
           <a href="" data-provider="google" data-auth-action="login" data-label="Google">${googleHTML}</a>
           <a href="#" data-provider="twitch" data-auth-action="login" data-label="Twitch">${twitchHTML}</a>
         </div>
