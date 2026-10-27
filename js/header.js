@@ -1,6 +1,7 @@
 const headerHTML = `
   <header>
     <nav></nav>
+	<input type="search" placeholder="Search..." />
     <div id="auth"></div>
   </header>
 `;
