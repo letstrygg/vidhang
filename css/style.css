@@ -23,33 +23,33 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 30px;
+  min-height: 32px;
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
 
 .icon-sm {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
 
 .button {
-  height: 30px;
+  height: 32px;
   box-sizing: border-box;
   padding: 0 10px;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 16px;
 }
 
 summary {
