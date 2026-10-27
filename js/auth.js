@@ -15,8 +15,8 @@ function renderAuth(user) {
     const avatar = user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
     authContainer.innerHTML = `
       <details>
-        <summary><img src="${avatar}" alt="Profile" class="icon top right" /></summary>
-        <div>
+        <summary><img src="${avatar}" alt="Profile" class="icon" /></summary>
+        <div class="top right">
           <a href="#" id="theme">${themeHTML}</a>
           <a href="#" id="signout">${logoutHTML}</a>
         </div>
