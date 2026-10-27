@@ -35,6 +35,7 @@ header input {
   border-radius: 16px;
   background-color: var(--deep);
   border: 1px solid var(--border);
+  padding: 0px 16px;
 }
 
 .icon {
