@@ -76,6 +76,11 @@ details div a, details div span {
   padding: 2px;
   white-space: nowrap;
   cursor: pointer;
+  opacity: 50%;
+}
+
+details div span:hover {
+  opacity: 100%;
 }
 
 .top {
@@ -90,7 +95,7 @@ details div a, details div span {
 a {
   color: inherit;
   text-decoration: none;
-  opacity: 80%;
+  opacity: 50%;
 }
 
 a:hover {
