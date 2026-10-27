@@ -29,6 +29,7 @@ header {
   height: 30px;
   object-fit: cover;
   border-radius: 50%;
+  display: block;
 }
 
 .icon-sm {
@@ -36,6 +37,7 @@ header {
   height: 20px;
   object-fit: cover;
   border-radius: 50%;
+  display: block;
 }
 
 .button {
