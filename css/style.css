@@ -75,6 +75,7 @@ details div a, details div span {
   gap: 8px;
   padding: 2px;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .top {
