@@ -24,10 +24,14 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   min-height: 32px;
+}
+
+header nav {
+  justify-self: start;
 }
 
 header input {
@@ -36,6 +40,11 @@ header input {
   background-color: var(--deep);
   border: 1px solid var(--border);
   padding: 0px 16px;
+  justify-self: center;
+}
+
+#auth {
+  justify-self: end;
 }
 
 .icon {
