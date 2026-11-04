@@ -1,0 +1,13 @@
+<head>
+  <script>
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (saved === 'light' || (!saved && prefersLight)) {
+      document.documentElement.classList.add('light-theme');
+    }
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <script type="module" src="/js/header.js"></script>
+</body>
